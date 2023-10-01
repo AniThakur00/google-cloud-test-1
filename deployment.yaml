@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-one-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: project-one
+  template:
+    metadata:
+      labels:
+        app: project-one
+    spec:
+      containers:
+        - name: project-one-container
+          image: gcr.io/project-1-400619/project-one:latest
+          ports:
+            - containerPort: 8000

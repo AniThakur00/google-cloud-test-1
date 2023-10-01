@@ -1,0 +1,20 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Current Working Directory
+        run: |
+          cd ..
+          echo "Current working directory: $(pwd)"
+          ls -al
+                
+          
