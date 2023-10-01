@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,50 +31,31 @@ jobs:
           docker build -t gcr.io/project-1-400619/project-one:latest .
           docker push gcr.io/project-1-400619/project-one:latest
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: project-1-400619
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          install_components: 'gke-gcloud-auth-plugin'
+          export_default_credentials: true
+  
       - name: Set Kubectl Context
         run: gcloud container clusters get-credentials gc-test-1 --zone us-central1 --project project-1-400619 
 
       - name: Deploy to GKE
-        run: |
-          kubectl apply -f - <<EOF
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: project-one-deployment
-          spec:
-            replicas: 3
-            selector:
-              matchLabels:
-                app: project-one
-            template:
-              metadata:
-                labels:
-                  app: project-one
-              spec:
-                containers:
-                  - name: project-one-container
-                    image: gcr.io/project-1-400619/project-one:latest
-                    imagePullPolicy: Always
-                    ports:
-                      - containerPort: 8000
-          EOF
+        run: kubectl apply -f deployment.yaml
           
       - name: Create LoadBalancer Service
-        run: |
-          kubectl apply -f - <<EOF
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: project-one-service
-          spec:
-            selector:
-              app: project-one  
-            ports:
-              - protocol: TCP
-                port: 80       
-                targetPort: 8000  
-            type: LoadBalancer
-          EOF
+        run: kubectl apply -f service.yaml
 
                 
           
