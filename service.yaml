@@ -7,6 +7,6 @@ spec:
     app: project-one  
   ports:
     - protocol: TCP
-      port: 80        # Port on the service
-      targetPort: 8000  # Port your application is listening on in the pod
-  type: LoadBalancer  # Expose via LoadBalancer
+      port: 80       
+      targetPort: 8000  
+  type: LoadBalancer
