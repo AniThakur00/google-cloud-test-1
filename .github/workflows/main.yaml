@@ -28,8 +28,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t gcr.io/project-1-400619/project-one:0.0.2 .
-          docker push gcr.io/project-1-400619/project-one:0.0.2
+          docker build -t gcr.io/project-1-400619/project-one:0.0.3 .
+          docker push gcr.io/project-1-400619/project-one:0.0.3
 
   deploy:
     runs-on: ubuntu-latest
