@@ -28,7 +28,7 @@ jobs:
           docker push gcr.io/project-1-400619/project-one:latest
 
       - name: Set Kubectl Context
-        run: gcloud container clusters get-credentials project-one --zone us-central1 --project project-1-400619 
+        run: gcloud container clusters get-credentials gc-test-1 --zone us-central1 --project project-1-400619 
 
       - name: Deploy to GKE
         run: |
