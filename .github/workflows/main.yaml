@@ -28,7 +28,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t gcr.io/project-1-400619/project-one:0.0.1 .
+          docker build -t gcr.io/project-1-400619/project-one:latest .
           docker push gcr.io/project-1-400619/project-one:latest
 
       - name: Set Kubectl Context
