@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: project-one-container
-          image: gcr.io/project-1-400619/project-one:latest
+          image: gcr.io/project-1-400619/project-one:0.0.2
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
