@@ -33,7 +33,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t $IMAGE_TAG .
-          docker push $IMAGETAG
+          docker push $IMAGE_TAG
 
   deploy:
     runs-on: ubuntu-latest
