@@ -12,9 +12,9 @@ spec:
           labels:
             app: project-one
         spec:
-			containers:
-				- name: project-one-container
-          image: gcr.io/project-1-400619/project-one:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8000
+          containers:
+				    - name: project-one-container
+              image: gcr.io/project-1-400619/project-one:latest
+              imagePullPolicy: Always
+              ports:
+                - containerPort: 8000
