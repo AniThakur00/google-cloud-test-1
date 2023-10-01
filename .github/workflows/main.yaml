@@ -40,7 +40,7 @@ jobs:
           apiVersion: apps/v1
           kind: Deployment
           metadata:
-            name: project-one-deployment1
+            name: project-one-deployment
           spec:
             replicas: 3
             selector:
@@ -53,7 +53,7 @@ jobs:
               spec:
                 containers:
                   - name: project-one-container
-                    image: project-one:latest
+                    image: gcr.io/project-1-400619/project-one:latest
                     imagePullPolicy: Always
                     ports:
                       - containerPort: 8000
@@ -65,7 +65,7 @@ jobs:
           apiVersion: v1
           kind: Service
           metadata:
-            name: project-one-service1
+            name: project-one-service
           spec:
             selector:
               app: project-one  
