@@ -46,9 +46,6 @@ jobs:
 
       - name: Access IMAGE_TAG
         run: echo ${{ needs.build.outputs.image_tag }}  # Access the IMAGE_TAG output from the build job
-
-      - name: check image
-        run: echo $IMAGE_TAG
         
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
