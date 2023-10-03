@@ -37,6 +37,14 @@ jobs:
       needs: build
         
       steps:  
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: project-1-400619
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          install_components: 'gke-gcloud-auth-plugin'
+          export_default_credentials: true
       
       - name: Set Kubectl Context
         run: gcloud container clusters get-credentials google-cloud-test-1 --zone us-central1 --project project-1-400619 
