@@ -28,15 +28,12 @@ jobs:
 
       - name: Set Docker Image Tag
         id: set_image_tag
-        run: echo "IMAGE_TAG=gcr.io/project-1-400619/project-one:$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+        run: echo "IMAGE_TAG=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t $IMAGE_TAG .
-          docker push $IMAGE_TAG
-          
-      - name: Access IMAGE_TAG
-        run: echo ${{ needs.build.outputs.image_tag }}  # Access the IMAGE_TAG output from the build job
+          docker build -t gcr.io/project-1-400619/project-one:0.0.5 .
+          docker push gcr.io/project-1-400619/project-one:0.0.5
   
       - name: Set Kubectl Context
         run: gcloud container clusters get-credentials google-cloud-test-1 --zone us-central1 --project project-1-400619 
