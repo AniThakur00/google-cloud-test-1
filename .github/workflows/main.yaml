@@ -55,7 +55,7 @@ jobs:
       - name: Deploy to GKE
         run: |
           DOCKER_IMAGE=gcr.io/project-1-400619/project-one:${{ github.run_number }}
-          gcloud container clusters get-credentials google-test-1 --region us-central --project project-1-400619
+          gcloud container clusters get-credentials google-test-1 --zone us-central1 --project project-1-400619
           docker pull $DOCKER_IMAGE
           gcloud auth configure-docker use-central1-docker.pkg.dev
           kubectl apply -f deployment.yaml
