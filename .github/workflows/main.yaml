@@ -53,7 +53,10 @@ jobs:
         run: gcloud container clusters get-credentials google-test-1 --zone us-central1 --project project-1-400619 
 
       - name: Deploy to GKE
-        run: kubectl apply -f deployment.yaml
+        run: |
+          DOCKER_IMAGE=gcr.io/project-1-400619/project-one:${{ github.run_number }}
+          docker pull $DOCKER_IMAGE
+          kubectl apply -f deployment.yaml
         
       - name: Rollout
         run: kubectl rollout  restart  -f deployment.yaml
