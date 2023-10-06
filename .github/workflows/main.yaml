@@ -57,9 +57,12 @@ jobs:
           DOCKER_IMAGE=gcr.io/project-1-400619/project-one:${{ github.run_number }}
           docker pull $DOCKER_IMAGE
           gcloud auth configure-docker use-central1-docker.pkg.dev
-          kubectl apply -f deployment.yaml
-          kubectl rollout  restart  -f deployment.yaml
+          kubectl apply -f - kubectl rollout status deployment/$project-one-deployment
           kubectl apply -f service.yaml
+        #kubectl apply -f deployment.yaml
+          
+        #kubectl rollout  restart  -f deployment.yaml
+         
 
                 
           
