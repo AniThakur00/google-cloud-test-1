@@ -29,7 +29,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t gcr.io/project-1-400619/project-one:${{ github.run_number }} .
-          docker tag -t gcr.io/project-1-400619/project-one:${{ github.run_number }} gcr.io/project-1-400619/project-one:latest
+          docker tag gcr.io/project-1-400619/project-one:${{ github.run_number }} gcr.io/project-1-400619/project-one:latest
           docker push gcr.io/project-1-400619/project-one:${{ github.run_number }}
           docker push gcr.io/project-1-400619/project-one:latest
           
