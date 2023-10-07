@@ -1,6 +1,6 @@
 version: '3'
 services:
-  my-app:
-    image: project_one_test:latest
+  my-service:
+    image: test-local
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Map container port 80 to host port 8080 (adjust as needed)
