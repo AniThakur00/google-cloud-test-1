@@ -53,7 +53,9 @@ jobs:
         run: gcloud container clusters get-credentials 	google-test-1 --zone us-central1 --project project-1-400619 
 
       - name: Deploy to GKE
-        run: kubectl apply -f deployment.yaml
+        run: |
+          docker pull gcr.io/project-1-400619/project-one:${{ github.run_number }}
+          kubectl apply -f deployment.yaml
           
       - name: Create LoadBalancer Service
         run: kubectl apply -f service.yaml
