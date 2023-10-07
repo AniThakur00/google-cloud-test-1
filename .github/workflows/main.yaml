@@ -29,8 +29,11 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t gcr.io/project-1-400619/project-one:${{ github.run_number }} .
+          docker tag -t gcr.io/project-1-400619/project-one:${{ github.run_number }} gcr.io/project-1-400619/project-one:latest
           docker push gcr.io/project-1-400619/project-one:${{ github.run_number }}
-
+          docker push gcr.io/project-1-400619/project-one:latest
+          
+        
   depoly:
   
       runs-on: ubuntu-latest
@@ -55,6 +58,7 @@ jobs:
       - name: Deploy to GKE
         run: |
           docker pull gcr.io/project-1-400619/project-one:${{ github.run_number }}
+          kubectl rollout  restart  -f deployment.yaml
           kubectl apply -f deployment.yaml
           
       - name: Create LoadBalancer Service
