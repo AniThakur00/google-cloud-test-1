@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 app.all('*', (req, res) => {
     console.log(req.path)
-    res.send('Hello, World from app1!-test-final');
+    res.send('Hello, Adii! Luv u');
 });
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
